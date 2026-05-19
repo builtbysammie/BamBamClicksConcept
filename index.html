@@ -1,0 +1,1158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bambam Clicks | Premium Photography Demo</title>
+  <meta name="description" content="Bambam Clicks — a premium concept website for portrait, event, lifestyle, and creative photography bookings." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --ink: #07080d;
+      --ink-soft: #10131c;
+      --panel: rgba(255, 255, 255, 0.075);
+      --panel-strong: rgba(255, 255, 255, 0.12);
+      --line: rgba(255, 255, 255, 0.14);
+      --line-soft: rgba(255, 255, 255, 0.08);
+      --cream: #fff8ec;
+      --mist: rgba(255, 248, 236, 0.72);
+      --muted: rgba(255, 248, 236, 0.52);
+      --gold: #f4c76b;
+      --gold-deep: #b8791b;
+      --blue: #69b8ff;
+      --blue-deep: #0d4e92;
+      --rose: #ff8fbd;
+      --max: 1180px;
+      --radius-xl: 34px;
+      --radius-lg: 24px;
+      --shadow: 0 30px 80px rgba(0, 0, 0, 0.38);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: "Inter", sans-serif;
+      color: var(--cream);
+      background:
+        radial-gradient(circle at 14% 12%, rgba(105, 184, 255, 0.18), transparent 34%),
+        radial-gradient(circle at 82% 6%, rgba(244, 199, 107, 0.16), transparent 28%),
+        radial-gradient(circle at 65% 76%, rgba(255, 143, 189, 0.12), transparent 32%),
+        var(--ink);
+      overflow-x: hidden;
+      line-height: 1.65;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    ::selection { background: var(--gold); color: var(--ink); }
+
+    .container {
+      width: min(100% - 42px, var(--max));
+      margin-inline: auto;
+    }
+
+    .grain {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.18;
+      z-index: 999;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.5'/%3E%3C/svg%3E");
+    }
+
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 18px 0;
+      transition: 0.35s ease;
+    }
+
+    .nav.scrolled {
+      background: rgba(7, 8, 13, 0.78);
+      backdrop-filter: blur(22px);
+      border-bottom: 1px solid var(--line-soft);
+    }
+
+    .nav-inner {
+      width: min(100% - 42px, var(--max));
+      margin-inline: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      font-size: 1.08rem;
+    }
+
+    .logo-mark {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      color: var(--ink);
+      background: linear-gradient(135deg, var(--gold), var(--blue));
+      box-shadow: 0 0 30px rgba(105, 184, 255, 0.18);
+      font-weight: 900;
+      letter-spacing: -0.08em;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      font-size: 0.78rem;
+      color: var(--mist);
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-weight: 700;
+    }
+
+    .nav-links a { transition: color 0.2s ease; }
+    .nav-links a:hover { color: var(--cream); }
+
+    .nav-btn,
+    .primary-btn,
+    .ghost-btn,
+    .whatsapp-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      border-radius: 999px;
+      min-height: 48px;
+      padding: 0 22px;
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      transition: transform 0.22s ease, background 0.22s ease, border-color 0.22s ease;
+      cursor: pointer;
+    }
+
+    .nav-btn,
+    .primary-btn {
+      background: var(--cream);
+      color: var(--ink);
+      box-shadow: 0 18px 46px rgba(255, 248, 236, 0.14);
+    }
+
+    .ghost-btn {
+      border: 1px solid var(--line);
+      color: var(--cream);
+      background: rgba(255, 255, 255, 0.04);
+      backdrop-filter: blur(14px);
+    }
+
+    .whatsapp-btn {
+      background: linear-gradient(135deg, #2de875, #16b35c);
+      color: #04140a;
+      box-shadow: 0 20px 50px rgba(45, 232, 117, 0.18);
+    }
+
+    .nav-btn:hover,
+    .primary-btn:hover,
+    .ghost-btn:hover,
+    .whatsapp-btn:hover { transform: translateY(-3px); }
+
+    .burger {
+      display: none;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--cream);
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .burger span {
+      width: 20px;
+      height: 2px;
+      background: currentColor;
+      border-radius: 999px;
+      transition: 0.25s ease;
+    }
+
+    .mobile-menu {
+      position: fixed;
+      top: 80px;
+      left: 21px;
+      right: 21px;
+      z-index: 99;
+      padding: 18px;
+      border: 1px solid var(--line);
+      background: rgba(7, 8, 13, 0.92);
+      backdrop-filter: blur(24px);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      display: none;
+    }
+
+    .mobile-menu.open { display: block; }
+
+    .mobile-menu a {
+      display: block;
+      padding: 15px 12px;
+      color: var(--mist);
+      border-bottom: 1px solid var(--line-soft);
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.13em;
+      font-weight: 800;
+    }
+
+    .mobile-menu a:last-child { border-bottom: 0; }
+
+    .hero {
+      min-height: 100vh;
+      padding: 118px 0 58px;
+      position: relative;
+      display: grid;
+      align-items: end;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(7, 8, 13, 0.94) 0%, rgba(7, 8, 13, 0.58) 42%, rgba(7, 8, 13, 0.2) 100%),
+        linear-gradient(0deg, rgba(7, 8, 13, 1) 0%, transparent 45%),
+        url('bambam clicks cute 1.jpg') center right / cover no-repeat;
+      transform: scale(1.02);
+      animation: heroFloat 12s ease-in-out infinite alternate;
+    }
+
+    @keyframes heroFloat {
+      from { transform: scale(1.02) translateY(0); }
+      to { transform: scale(1.06) translateY(-10px); }
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+      background-size: 72px 72px;
+      mask-image: linear-gradient(to bottom, transparent, #000 18%, #000 60%, transparent);
+      opacity: 0.28;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      width: min(100% - 42px, var(--max));
+      margin-inline: auto;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 48px;
+      align-items: end;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 13px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.055);
+      backdrop-filter: blur(18px);
+      border-radius: 999px;
+      color: var(--mist);
+      font-size: 0.72rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      font-weight: 800;
+      margin-bottom: 22px;
+    }
+
+    .eyebrow-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--gold);
+      box-shadow: 0 0 0 8px rgba(244, 199, 107, 0.12);
+    }
+
+    h1,
+    h2,
+    h3,
+    .display {
+      font-family: "DM Serif Display", serif;
+      font-weight: 400;
+      letter-spacing: -0.055em;
+    }
+
+    h1 {
+      font-size: clamp(4rem, 9vw, 9.4rem);
+      line-height: 0.84;
+      max-width: 760px;
+    }
+
+    h1 span {
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(255, 248, 236, 0.64);
+      text-shadow: none;
+    }
+
+    .hero-copy {
+      max-width: 610px;
+      margin-top: 28px;
+      color: var(--mist);
+      font-size: clamp(1rem, 1.4vw, 1.16rem);
+    }
+
+    .hero-actions {
+      margin-top: 32px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .hero-card {
+      position: relative;
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.13), rgba(255, 255, 255, 0.055));
+      backdrop-filter: blur(22px);
+      border-radius: var(--radius-xl);
+      padding: 18px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .hero-card img {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      border-radius: 24px;
+      filter: saturate(1.05) contrast(1.03);
+    }
+
+    .hero-card-caption {
+      position: absolute;
+      left: 30px;
+      right: 30px;
+      bottom: 30px;
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+      padding: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 18px;
+      background: rgba(7, 8, 13, 0.58);
+      backdrop-filter: blur(16px);
+    }
+
+    .hero-card-caption strong { display: block; font-size: 0.92rem; }
+    .hero-card-caption span { color: var(--muted); font-size: 0.74rem; }
+
+    .ticker {
+      position: relative;
+      z-index: 3;
+      overflow: hidden;
+      border-block: 1px solid var(--line-soft);
+      background: rgba(255, 255, 255, 0.035);
+    }
+
+    .ticker-track {
+      display: flex;
+      gap: 28px;
+      width: max-content;
+      animation: ticker 28s linear infinite;
+      padding: 17px 0;
+    }
+
+    .ticker span {
+      color: var(--mist);
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-size: 0.74rem;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .ticker b { color: var(--gold); }
+
+    @keyframes ticker {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    section { padding: 104px 0; position: relative; }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: 1fr 0.75fr;
+      gap: 36px;
+      align-items: end;
+      margin-bottom: 46px;
+    }
+
+    .kicker {
+      color: var(--gold);
+      font-size: 0.74rem;
+      font-weight: 900;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-size: clamp(3rem, 6vw, 6.5rem);
+      line-height: 0.88;
+    }
+
+    .section-desc {
+      color: var(--muted);
+      font-size: 0.98rem;
+      max-width: 460px;
+    }
+
+    .intro-grid {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .intro-panel,
+    .service-card,
+    .about-card,
+    .contact-panel {
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.045));
+      backdrop-filter: blur(20px);
+      border-radius: var(--radius-xl);
+      box-shadow: 0 20px 70px rgba(0, 0, 0, 0.2);
+    }
+
+    .intro-panel { padding: 34px; }
+
+    .intro-panel p {
+      color: var(--mist);
+      font-size: 1.05rem;
+      margin-bottom: 20px;
+    }
+
+    .signature-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 26px;
+    }
+
+    .pill {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 10px 14px;
+      color: var(--mist);
+      font-size: 0.74rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-weight: 800;
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .intro-image {
+      min-height: 470px;
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      position: relative;
+      border: 1px solid var(--line);
+    }
+
+    .intro-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: saturate(1.03) contrast(1.02);
+    }
+
+    .float-note {
+      position: absolute;
+      left: 22px;
+      bottom: 22px;
+      right: 22px;
+      padding: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      background: rgba(7, 8, 13, 0.68);
+      backdrop-filter: blur(16px);
+      border-radius: 22px;
+      color: var(--mist);
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .service-card {
+      padding: 18px;
+      overflow: hidden;
+      min-height: 370px;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.25s ease, border-color 0.25s ease;
+    }
+
+    .service-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(244, 199, 107, 0.42);
+    }
+
+    .service-card img {
+      width: 100%;
+      aspect-ratio: 1 / 0.88;
+      object-fit: cover;
+      border-radius: 24px;
+      margin-bottom: 22px;
+    }
+
+    .service-number {
+      color: var(--gold);
+      font-size: 0.72rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      font-weight: 900;
+      margin-bottom: 8px;
+    }
+
+    .service-card h3 {
+      font-size: 1.65rem;
+      line-height: 1;
+      margin-bottom: 10px;
+      letter-spacing: -0.04em;
+    }
+
+    .service-card p {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-top: auto;
+    }
+
+    .blue-feature {
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 25% 20%, rgba(105, 184, 255, 0.26), transparent 32%),
+        linear-gradient(135deg, rgba(13, 78, 146, 0.82), rgba(7, 8, 13, 0.96));
+      border-block: 1px solid rgba(105, 184, 255, 0.16);
+    }
+
+    .blue-strip {
+      display: grid;
+      grid-template-columns: 0.8fr 1.2fr;
+      gap: 34px;
+      align-items: center;
+    }
+
+    .blue-copy h2 {
+      font-size: clamp(3rem, 6vw, 6.2rem);
+      line-height: 0.88;
+      margin-bottom: 20px;
+    }
+
+    .blue-copy p {
+      color: rgba(255, 248, 236, 0.72);
+      max-width: 430px;
+    }
+
+    .blue-gallery {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .blue-gallery img {
+      width: 100%;
+      height: 440px;
+      object-fit: cover;
+      border-radius: 26px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.26);
+    }
+
+    .blue-gallery img:nth-child(2) { transform: translateY(44px); }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      grid-auto-rows: 170px;
+      gap: 14px;
+    }
+
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 28px;
+      border: 1px solid var(--line-soft);
+      background: var(--panel);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.8s ease, filter 0.4s ease;
+      filter: saturate(0.96) contrast(1.02);
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.08);
+      filter: saturate(1.08) contrast(1.06);
+    }
+
+    .gallery-item::after {
+      content: attr(data-label);
+      position: absolute;
+      left: 16px;
+      bottom: 16px;
+      padding: 9px 12px;
+      border-radius: 999px;
+      background: rgba(7, 8, 13, 0.58);
+      backdrop-filter: blur(14px);
+      color: var(--cream);
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-weight: 900;
+    }
+
+    .wide { grid-column: span 5; grid-row: span 2; }
+    .tall { grid-column: span 3; grid-row: span 3; }
+    .small { grid-column: span 4; grid-row: span 2; }
+    .medium { grid-column: span 4; grid-row: span 3; }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .about-card { padding: 38px; }
+
+    .about-card h2 {
+      font-size: clamp(3rem, 6vw, 6rem);
+      line-height: 0.9;
+      margin-bottom: 24px;
+    }
+
+    .about-card p { color: var(--mist); margin-bottom: 18px; }
+
+    .about-photo {
+      min-height: 560px;
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      border: 1px solid var(--line);
+      position: relative;
+    }
+
+    .about-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .stat-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .stat {
+      padding: 18px;
+      border-radius: 22px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--line-soft);
+    }
+
+    .stat strong {
+      display: block;
+      font-family: "DM Serif Display", serif;
+      font-size: 2.2rem;
+      line-height: 1;
+      color: var(--gold);
+      font-weight: 400;
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: 0.76rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-weight: 800;
+    }
+
+    .contact-section { padding-bottom: 68px; }
+
+    .contact-panel {
+      padding: 42px;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 28px;
+      align-items: center;
+      background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.13), rgba(255, 255, 255, 0.05)),
+        radial-gradient(circle at 80% 20%, rgba(45, 232, 117, 0.15), transparent 38%);
+    }
+
+    .contact-panel h2 {
+      font-size: clamp(3rem, 6vw, 6.4rem);
+      line-height: 0.88;
+      margin-bottom: 18px;
+    }
+
+    .contact-panel p {
+      color: var(--mist);
+      max-width: 550px;
+    }
+
+    .contact-actions {
+      display: grid;
+      gap: 12px;
+    }
+
+    .contact-mini {
+      padding: 18px;
+      border: 1px solid var(--line-soft);
+      border-radius: 22px;
+      background: rgba(255, 255, 255, 0.055);
+    }
+
+    .contact-mini span {
+      display: block;
+      color: var(--gold);
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      font-weight: 900;
+      margin-bottom: 3px;
+    }
+
+    .contact-mini strong {
+      color: var(--cream);
+      font-size: 1rem;
+    }
+
+    footer {
+      border-top: 1px solid var(--line-soft);
+      padding: 34px 0;
+      color: var(--muted);
+      background: rgba(0, 0, 0, 0.2);
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+      font-size: 0.82rem;
+    }
+
+    .concept-note {
+      color: var(--cream);
+      font-weight: 800;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(26px);
+      transition: opacity 0.75s ease, transform 0.75s ease;
+    }
+
+    .reveal.in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 1040px) {
+      .hero-inner,
+      .intro-grid,
+      .blue-strip,
+      .about-grid,
+      .contact-panel,
+      .section-head {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-card { max-width: 520px; }
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .blue-gallery img { height: 340px; }
+    }
+
+    @media (max-width: 760px) {
+      .nav-links,
+      .nav-btn { display: none; }
+      .burger { display: inline-flex; }
+      .hero { padding-top: 112px; min-height: auto; }
+      .hero::before {
+        background:
+          linear-gradient(180deg, rgba(7, 8, 13, 0.44) 0%, rgba(7, 8, 13, 0.94) 62%, rgba(7, 8, 13, 1) 100%),
+          url('bambam clicks cute 1.jpg') center top / cover no-repeat;
+      }
+      .hero-inner { gap: 34px; }
+      h1 { font-size: clamp(4.1rem, 18vw, 6.6rem); }
+      .hero-card { display: none; }
+      .hero-actions { align-items: stretch; }
+      .primary-btn,
+      .ghost-btn,
+      .whatsapp-btn { width: 100%; }
+      section { padding: 76px 0; }
+      .services-grid { grid-template-columns: 1fr; }
+      .blue-gallery { grid-template-columns: 1fr; }
+      .blue-gallery img,
+      .blue-gallery img:nth-child(2) { height: 310px; transform: none; }
+      .gallery-grid { display: block; }
+      .gallery-item { height: 300px; margin-bottom: 14px; }
+      .stat-row { grid-template-columns: 1fr; }
+      .about-photo { min-height: 380px; }
+      .intro-panel,
+      .about-card,
+      .contact-panel { padding: 24px; }
+      .container,
+      .nav-inner,
+      .hero-inner { width: min(100% - 30px, var(--max)); }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="grain"></div>
+
+  <nav class="nav" id="mainNav">
+    <div class="nav-inner">
+      <a href="#" class="logo" aria-label="Bambam Clicks home">
+        <span class="logo-mark">bc</span>
+        <span>Bambam Clicks</span>
+      </a>
+
+      <div class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#services">Services</a>
+        <a href="#about">About</a>
+      </div>
+
+      <a class="nav-btn" href="https://wa.me/2340000000000?text=Hello%20Bambam%20Clicks%2C%20I%20would%20like%20to%20book%20a%20photography%20session." target="_blank" rel="noopener">WhatsApp Booking</a>
+
+      <button class="burger" id="burgerBtn" aria-label="Open menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#home">Home</a>
+    <a href="#intro">Intro</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#services">Services</a>
+    <a href="#about">About</a>
+    <a href="#contact">WhatsApp Booking</a>
+  </div>
+
+  <header class="hero" id="home">
+    <div class="hero-inner">
+      <div class="hero-copy-block reveal">
+        <div class="eyebrow"><span class="eyebrow-dot"></span> Concept photography website preview</div>
+        <h1>Bambam<br><span>Clicks</span></h1>
+        <p class="hero-copy">
+          A premium, mobile-first photography experience built to make Bambam Clicks look clearer, more trustworthy, and easier to book. Portraits, birthdays, events, lifestyle shoots, and creative moments — all presented in one polished home.
+        </p>
+        <div class="hero-actions">
+          <a class="whatsapp-btn" href="https://wa.me/2340000000000?text=Hello%20Bambam%20Clicks%2C%20I%20would%20like%20to%20book%20a%20photography%20session." target="_blank" rel="noopener">Book on WhatsApp</a>
+          <a class="ghost-btn" href="#gallery">View Gallery</a>
+        </div>
+      </div>
+
+      <div class="hero-card reveal">
+        <img src="bambam-clicks2.jpg" alt="Bambam Clicks featured photography preview" />
+        <div class="hero-card-caption">
+          <div>
+            <strong>Premium memories</strong>
+            <span>Clean booking flow · Stronger first impression</span>
+          </div>
+          <span>↗</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="ticker">
+    <div class="ticker-track">
+      <span>Portraits <b>•</b></span>
+      <span>Birthday shoots <b>•</b></span>
+      <span>Events <b>•</b></span>
+      <span>Studio sessions <b>•</b></span>
+      <span>Lifestyle moments <b>•</b></span>
+      <span>Creative direction <b>•</b></span>
+      <span>WhatsApp booking <b>•</b></span>
+      <span>Portraits <b>•</b></span>
+      <span>Birthday shoots <b>•</b></span>
+      <span>Events <b>•</b></span>
+      <span>Studio sessions <b>•</b></span>
+      <span>Lifestyle moments <b>•</b></span>
+      <span>Creative direction <b>•</b></span>
+      <span>WhatsApp booking <b>•</b></span>
+    </div>
+  </div>
+
+  <main>
+    <section id="intro">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <div class="kicker">Homepage intro</div>
+            <h2 class="section-title">A cleaner way to sell the feeling.</h2>
+          </div>
+          <p class="section-desc">
+            Instead of making visitors scroll through social media to understand the brand, this homepage gives them the mood, proof, services, gallery, and booking button in one place.
+          </p>
+        </div>
+
+        <div class="intro-grid">
+          <div class="intro-panel reveal">
+            <p>
+              Bambam Clicks captures the small, loud, soft, stylish, and unforgettable parts of people’s lives. This concept positions the brand as warm and creative, but still polished enough for clients to trust quickly.
+            </p>
+            <p>
+              The structure is simple: show the best visuals first, explain the service clearly, then push interested visitors straight to WhatsApp where they can ask questions or book.
+            </p>
+            <div class="signature-row">
+              <span class="pill">Premium look</span>
+              <span class="pill">Mobile-first</span>
+              <span class="pill">Fast contact</span>
+            </div>
+          </div>
+
+          <div class="intro-image reveal">
+            <img src="bambamclick3.jpg" alt="Bambam Clicks homepage intro preview" loading="lazy" />
+            <div class="float-note">
+              <strong>Built for quick trust.</strong><br />
+              A visitor should understand the brand, see the work, and know how to book in under one minute.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="blue-feature">
+      <div class="container">
+        <div class="blue-strip">
+          <div class="blue-copy reveal">
+            <div class="kicker">Blue mood feature</div>
+            <h2>Cool tones. Sharp moments.</h2>
+            <p>
+              This section uses the blue-themed images as a premium visual break, giving the page a more editorial and memorable feel instead of looking like a normal template.
+            </p>
+          </div>
+
+          <div class="blue-gallery reveal">
+            <img src="bambamclick5-blue.jpg" alt="Blue themed Bambam Clicks photography sample" loading="lazy" />
+            <img src="bambamclick6-blue.jpg" alt="Blue themed Bambam Clicks photography sample" loading="lazy" />
+            <img src="bambamclick7-blue.jpg" alt="Blue themed Bambam Clicks photography sample" loading="lazy" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <div class="kicker">Services</div>
+            <h2 class="section-title">What clients can book.</h2>
+          </div>
+          <p class="section-desc">
+            The services are written in a simple way so the client does not need to guess what Bambam Clicks does or ask basic questions before booking.
+          </p>
+        </div>
+
+        <div class="services-grid">
+          <article class="service-card reveal">
+            <img src="bambamclick4.jpg" alt="Portrait photography service" loading="lazy" />
+            <div class="service-number">01 · Portraits</div>
+            <h3>Personal Shoots</h3>
+            <p>Birthday portraits, creative portraits, casual sessions, graduation looks, and profile-ready images.</p>
+          </article>
+
+          <article class="service-card reveal">
+            <img src="bambamclick8.jpg" alt="Event photography service" loading="lazy" />
+            <div class="service-number">02 · Events</div>
+            <h3>Event Coverage</h3>
+            <p>Birthdays, hangouts, intimate parties, ceremonies, launches, and memories that need clean documentation.</p>
+          </article>
+
+          <article class="service-card reveal">
+            <img src="bambamclick9.jpg" alt="Lifestyle photography service" loading="lazy" />
+            <div class="service-number">03 · Lifestyle</div>
+            <h3>Lifestyle Moments</h3>
+            <p>Relaxed outdoor or indoor sessions for clients who want natural images without stiff posing.</p>
+          </article>
+
+          <article class="service-card reveal">
+            <img src="bambamclick10.jpg" alt="Creative direction photography service" loading="lazy" />
+            <div class="service-number">04 · Direction</div>
+            <h3>Creative Direction</h3>
+            <p>Simple posing guidance, mood planning, location ideas, and shoot concepts so clients feel less confused.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="gallery">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <div class="kicker">Gallery preview</div>
+            <h2 class="section-title">A visual reason to book.</h2>
+          </div>
+          <p class="section-desc">
+            The gallery is designed as a preview, not a photo dump. It should make the work feel curated and premium while still showing variety.
+          </p>
+        </div>
+
+        <div class="gallery-grid">
+          <div class="gallery-item wide reveal" data-label="Cute cover"><img src="bambam clicks cute 1.jpg" alt="Bambam Clicks cute cover gallery image" loading="lazy" /></div>
+          <div class="gallery-item tall reveal" data-label="Portrait"><img src="bambamclick11.jpg" alt="Bambam Clicks portrait gallery image" loading="lazy" /></div>
+          <div class="gallery-item small reveal" data-label="Lifestyle"><img src="bambamclick12.jpg" alt="Bambam Clicks lifestyle gallery image" loading="lazy" /></div>
+          <div class="gallery-item medium reveal" data-label="Moments"><img src="bambam-clicks2.jpg" alt="Bambam Clicks moments gallery image" loading="lazy" /></div>
+          <div class="gallery-item small reveal" data-label="Details"><img src="bambamclick3.jpg" alt="Bambam Clicks detail gallery image" loading="lazy" /></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container">
+        <div class="about-grid">
+          <div class="about-card reveal">
+            <div class="kicker">About section</div>
+            <h2>Photos with personality, not just poses.</h2>
+            <p>
+              Bambam Clicks is positioned here as a photography brand for people who want their pictures to feel alive, expressive, and worth sharing.
+            </p>
+            <p>
+              The website gives the brand a stronger first impression: clear services, curated visuals, premium styling, and a direct WhatsApp booking path. That matters because many clients will judge the quality of the photographer before they even send a message.
+            </p>
+
+            <div class="stat-row">
+              <div class="stat">
+                <strong>01</strong>
+                <span>Clear homepage</span>
+              </div>
+              <div class="stat">
+                <strong>05</strong>
+                <span>Gallery zones</span>
+              </div>
+              <div class="stat">
+                <strong>24/7</strong>
+                <span>Booking CTA</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="about-photo reveal">
+            <img src="bambamclick4.jpg" alt="About Bambam Clicks photography preview" loading="lazy" />
+            <div class="float-note">
+              <strong>Business goal:</strong> make the photographer look easier to trust, easier to understand, and easier to contact.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact-section" id="contact">
+      <div class="container">
+        <div class="contact-panel reveal">
+          <div>
+            <div class="kicker">WhatsApp booking/contact button</div>
+            <h2>Ready to plan a shoot?</h2>
+            <p>
+              Send a quick message with your shoot type, preferred date, location, and the kind of photos you want. Bambam Clicks can reply with availability, pricing, and next steps.
+            </p>
+          </div>
+
+          <div class="contact-actions">
+            <a class="whatsapp-btn" href="https://wa.me/2340000000000?text=Hello%20Bambam%20Clicks%2C%20I%20would%20like%20to%20book%20a%20photography%20session." target="_blank" rel="noopener">Book via WhatsApp</a>
+            <div class="contact-mini">
+              <span>Booking info</span>
+              <strong>Send shoot type, date, location, and budget.</strong>
+            </div>
+            <div class="contact-mini">
+              <span>Demo note</span>
+              <strong>Replace the WhatsApp number before sending live.</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <span>© 2026 Bambam Clicks. Photography website concept.</span>
+      <span class="concept-note">Concept preview by Built by Sammie. Final website will be completed after approval.</span>
+    </div>
+  </footer>
+
+  <script>
+    const nav = document.getElementById('mainNav');
+    const burgerBtn = document.getElementById('burgerBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    burgerBtn.addEventListener('click', () => {
+      const isOpen = mobileMenu.classList.toggle('open');
+      burgerBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+
+    document.querySelectorAll('.mobile-menu a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.remove('open');
+        burgerBtn.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+    reveals.forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
