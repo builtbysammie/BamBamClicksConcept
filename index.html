@@ -4,433 +4,669 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Somikky Imagery | Luxury Event Videography</title>
-  <meta name="description" content="Somikky Imagery — luxury event videography for weddings, celebrations, and portraits across Abuja and Southeast Nigeria." />
+  <meta name="description" content="Somikky Imagery is an Abuja and Southeast event videography brand creating cinematic event, wedding, and couple films." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,300;0,6..96,400;1,6..96,300;1,6..96,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
 
   <style>
     :root {
-      --ink:       #040404;
-      --ink-2:     #080808;
-      --ink-3:     #0e0e0e;
-      --ivory:     #f5ede0;
-      --ivory-dim: rgba(245,237,224,0.6);
-      --ivory-faint: rgba(245,237,224,0.12);
-      --gold:      #c9a96e;
-      --gold-2:    #e8cc99;
-      --gold-dim:  rgba(201,169,110,0.22);
-      --line:      rgba(245,237,224,0.09);
-      --line-soft: rgba(245,237,224,0.055);
-      --max:       1160px;
-      --r:         28px;
-      --r-sm:      16px;
+      --ink: #040405;
+      --ink-2: #09090c;
+      --ink-3: #111116;
+      --ivory: #f7f0df;
+      --ivory-dim: rgba(247, 240, 223, 0.68);
+      --ivory-soft: rgba(247, 240, 223, 0.42);
+      --gold: #d8b96f;
+      --gold-2: #f0d898;
+      --wine: #34131b;
+      --glass: rgba(255, 255, 255, 0.05);
+      --line: rgba(247, 240, 223, 0.12);
+      --line-soft: rgba(247, 240, 223, 0.07);
+      --max: 1180px;
+      --r: 30px;
+      --r-sm: 18px;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-
     body {
-      font-family: "Montserrat", sans-serif;
+      font-family: "Outfit", sans-serif;
       background: var(--ink);
       color: var(--ivory);
       overflow-x: hidden;
-      line-height: 1.6;
+      line-height: 1.55;
     }
-
     a { color: inherit; text-decoration: none; }
     img, video { display: block; max-width: 100%; }
-    ::selection { background: var(--gold); color: var(--ink); }
+    ::selection { background: var(--gold); color: #090909; }
 
-    /* ── LOADER ── */
     #loader {
-      position: fixed; inset: 0; z-index: 9999;
-      background: #020202;
-      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 24px;
-      transition: opacity 1s ease, visibility 1s ease;
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background:
+        radial-gradient(circle at 50% 42%, rgba(216,185,111,0.14), transparent 30%),
+        linear-gradient(135deg, #030304 0%, #0d090b 52%, #020203 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 22px;
+      transition: opacity 0.75s ease, visibility 0.75s ease;
     }
     #loader.done { opacity: 0; visibility: hidden; pointer-events: none; }
-
     .loader-mark {
-      width: min(160px, 38vw); height: auto;
-      opacity: 0; filter: drop-shadow(0 0 40px rgba(201,169,110,0.2));
-      animation: bloom 1s 0.3s cubic-bezier(0.16,1,0.3,1) forwards;
+      width: min(180px, 42vw);
+      height: auto;
+      opacity: 0;
+      filter: drop-shadow(0 24px 48px rgba(216,185,111,0.16));
+      animation: logoBloom 1s 0.2s cubic-bezier(0.16,1,0.3,1) forwards;
     }
     .loader-name {
-      font-family: "Montserrat", sans-serif;
-      font-size: 0.6rem; font-weight: 600; letter-spacing: 0.42em; text-transform: uppercase;
-      color: var(--gold); opacity: 0; animation: fadeup 0.7s 0.7s forwards;
+      font-family: "Cinzel", serif;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.34em;
+      text-transform: uppercase;
+      color: var(--ivory-dim);
+      opacity: 0;
+      animation: fadeUp 0.75s 0.55s forwards;
     }
-    .loader-bar-wrap { width: 120px; height: 1px; background: var(--line); overflow: hidden; opacity: 0; animation: fadeup 0.6s 0.9s forwards; }
-    .loader-bar { height: 100%; width: 0; background: linear-gradient(90deg, var(--gold), var(--gold-2), var(--gold)); animation: fillbar 1.3s 1s cubic-bezier(.4,0,.2,1) forwards; }
+    .loader-bar-wrap {
+      width: 150px;
+      height: 1px;
+      background: var(--line);
+      overflow: hidden;
+      opacity: 0;
+      animation: fadeUp 0.65s 0.75s forwards;
+    }
+    .loader-bar {
+      width: 0;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, var(--gold-2), transparent);
+      animation: loadBar 1.35s 0.85s cubic-bezier(.4,0,.2,1) forwards;
+    }
+    @keyframes loadBar { to { width: 100%; } }
+    @keyframes logoBloom { from { opacity: 0; transform: translateY(14px) scale(0.94); } to { opacity: 1; transform: none; } }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
 
-    @keyframes fillbar { to { width: 100%; } }
-    @keyframes bloom { from { opacity:0; transform:scale(0.9) translateY(16px); } to { opacity:1; transform:none; } }
-    @keyframes fadeup { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:none; } }
-
-    /* ── GRAIN ── */
     .grain {
-      position: fixed; inset: 0; pointer-events: none; opacity: 0.09; z-index: 9990;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.88' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-      mix-blend-mode: overlay;
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.105;
+      z-index: 9998;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      mix-blend-mode: soft-light;
     }
 
-    /* ── NAV ── */
     nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 500;
-      padding: 22px 0;
-      transition: background 0.4s, border-color 0.4s, padding 0.4s;
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 500;
+      padding: 18px 0;
+      transition: background 0.35s, border-color 0.35s, padding 0.35s;
       border-bottom: 1px solid transparent;
     }
     nav.scrolled {
-      background: rgba(4,4,4,0.88);
-      backdrop-filter: blur(32px) saturate(1.4);
+      background: rgba(4,4,5,0.82);
+      backdrop-filter: blur(26px);
       border-color: var(--line-soft);
-      padding: 14px 0;
+      padding: 12px 0;
     }
     .nav-inner {
-      width: min(100% - 40px, var(--max));
+      width: min(100% - 36px, var(--max));
       margin-inline: auto;
-      display: flex; align-items: center; justify-content: space-between; gap: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
     }
-    .brand { display: inline-flex; align-items: center; gap: 13px; }
-    .brand img { width: 40px; height: 40px; object-fit: contain; }
+    .brand { display: inline-flex; align-items: center; gap: 12px; min-width: 0; }
+    .brand img { width: 42px; height: 42px; object-fit: contain; }
     .brand span {
-      font-size: 0.7rem; font-weight: 600; letter-spacing: 0.28em; text-transform: uppercase; white-space: nowrap;
+      font-family: "Cinzel", serif;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      white-space: nowrap;
     }
     .nav-links {
-      display: flex; gap: 32px;
-      font-size: 0.62rem; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ivory-dim);
+      display: flex;
+      gap: 28px;
+      font-size: 0.66rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--ivory-dim);
     }
     .nav-links a { transition: color 0.2s; }
     .nav-links a:hover { color: var(--ivory); }
     .nav-cta {
-      font-size: 0.62rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase;
-      padding: 10px 22px; border-radius: 999px;
-      border: 1px solid rgba(201,169,110,0.4); color: var(--gold);
-      background: rgba(201,169,110,0.07);
-      transition: background 0.2s, transform 0.2s;
+      font-size: 0.66rem;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      padding: 10px 20px;
+      border-radius: 999px;
+      border: 1px solid rgba(216,185,111,0.36);
+      color: var(--gold-2);
+      background: rgba(216,185,111,0.08);
+      transition: transform 0.2s, background 0.2s;
       white-space: nowrap;
     }
-    .nav-cta:hover { background: rgba(201,169,110,0.16); transform: translateY(-2px); }
+    .nav-cta:hover { transform: translateY(-2px); background: rgba(216,185,111,0.16); }
     .burger {
-      display: none; width: 40px; height: 40px; border-radius: 50%;
-      border: 1px solid var(--line); background: transparent; cursor: pointer;
-      flex-direction: column; align-items: center; justify-content: center; gap: 5px;
+      display: none;
+      width: 42px; height: 42px;
+      border-radius: 50%;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.03);
+      cursor: pointer;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
     }
-    .burger span { width: 18px; height: 1px; background: var(--ivory); border-radius: 999px; }
+    .burger span { width: 18px; height: 1.5px; background: var(--ivory); border-radius: 999px; }
     .mob-menu {
-      position: fixed; top: 72px; left: 14px; right: 14px; z-index: 499;
-      background: rgba(6,6,6,0.97); backdrop-filter: blur(32px);
-      border: 1px solid var(--line); border-radius: 22px; padding: 8px; display: none;
+      position: fixed;
+      top: 74px; left: 16px; right: 16px;
+      z-index: 499;
+      display: none;
+      padding: 10px;
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: rgba(7,7,10,0.96);
+      backdrop-filter: blur(28px);
     }
     .mob-menu.open { display: block; }
     .mob-menu a {
-      display: block; padding: 15px 18px; color: var(--ivory-dim);
-      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
+      display: block;
+      padding: 14px 16px;
+      color: var(--ivory-dim);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
       border-bottom: 1px solid var(--line-soft);
     }
     .mob-menu a:last-child { border-bottom: 0; }
 
-    /* ── HERO ── */
     .hero {
-      min-height: 100svh; position: relative;
-      display: flex; align-items: flex-end; overflow: hidden; isolation: isolate;
+      min-height: 100svh;
+      position: relative;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+      isolation: isolate;
     }
     .hero-bg {
-      position: absolute; inset: 0;
+      position: absolute;
+      inset: 0;
+      z-index: -4;
       background: url('somikky_imagery-image1.jpg') center / cover no-repeat;
-      animation: slowzoom 22s ease-in-out infinite alternate;
-      z-index: -2;
+      animation: heroPan 20s ease-in-out infinite alternate;
     }
-    @keyframes slowzoom { from { transform: scale(1.04); } to { transform: scale(1.12) translate(-1.5%,-1%); } }
-    .hero-overlay {
-      position: absolute; inset: 0; z-index: -1;
+    @keyframes heroPan { from { transform: scale(1.05); } to { transform: scale(1.13) translate(-2%, -1.5%); } }
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -3;
       background:
-        linear-gradient(180deg, rgba(4,4,4,0.2) 0%, rgba(4,4,4,0.1) 30%, rgba(4,4,4,0.88) 100%),
-        linear-gradient(100deg, rgba(4,4,4,0.8) 0%, rgba(4,4,4,0.3) 55%, transparent 100%);
+        linear-gradient(90deg, rgba(4,4,5,0.92) 0%, rgba(4,4,5,0.56) 48%, rgba(4,4,5,0.22) 100%),
+        linear-gradient(180deg, rgba(4,4,5,0.26) 0%, rgba(4,4,5,0.22) 42%, rgba(4,4,5,0.95) 100%);
+    }
+    .hero-video-card {
+      position: absolute;
+      right: max(28px, calc((100vw - var(--max)) / 2));
+      bottom: 94px;
+      width: min(285px, 28vw);
+      aspect-ratio: 9 / 14;
+      border-radius: 30px;
+      overflow: hidden;
+      border: 1px solid rgba(216,185,111,0.28);
+      box-shadow: 0 38px 100px rgba(0,0,0,0.52);
+      background: #000;
+      z-index: 1;
+      opacity: 0;
+      animation: fadeUp 0.9s 2.45s forwards;
+    }
+    .hero-video-card video { width: 100%; height: 100%; object-fit: cover; opacity: 0.9; }
+    .hero-video-card::after {
+      content: "Now playing";
+      position: absolute;
+      left: 14px; bottom: 14px;
+      padding: 7px 11px;
+      border-radius: 999px;
+      background: rgba(5,5,7,0.66);
+      backdrop-filter: blur(14px);
+      color: var(--gold-2);
+      font-size: 0.58rem;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      border: 1px solid rgba(255,255,255,0.12);
     }
     .hero-content {
-      position: relative; z-index: 2;
-      width: min(100% - 40px, var(--max));
+      position: relative;
+      z-index: 2;
+      width: min(100% - 36px, var(--max));
       margin-inline: auto;
-      padding: 160px 0 80px;
+      padding: 150px 0 66px;
+      display: grid;
+      grid-template-columns: 0.76fr 0.24fr;
+      gap: 24px;
+      align-items: end;
     }
     .eyebrow {
-      display: inline-flex; align-items: center; gap: 12px;
-      font-size: 0.58rem; font-weight: 700; letter-spacing: 0.32em; text-transform: uppercase;
-      color: var(--gold); margin-bottom: 24px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.62rem;
+      font-weight: 800;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--gold-2);
+      margin-bottom: 18px;
     }
-    .eyebrow::before { content: ""; width: 28px; height: 1px; background: var(--gold); }
-
-    .hero .eyebrow, .hero-h1, .hero-sub, .hero-actions { opacity: 0; animation: fadeup 0.9s forwards; }
-    .hero .eyebrow { animation-delay: 2.2s; }
-    .hero-h1    { animation-delay: 2.42s; }
-    .hero-sub   { animation-delay: 2.7s; }
-    .hero-actions { animation-delay: 2.88s; }
-
+    .eyebrow::before { content: ""; width: 26px; height: 1px; background: var(--gold); }
+    .hero .eyebrow, .hero-h1, .hero-actions, .hero-proof, .hero-marquee { opacity: 0; animation: fadeUp 0.85s forwards; }
+    .hero .eyebrow { animation-delay: 1.9s; }
+    .hero-h1 { animation-delay: 2.08s; }
+    .hero-marquee { animation-delay: 2.25s; }
+    .hero-actions { animation-delay: 2.44s; }
+    .hero-proof { animation-delay: 2.7s; }
     .hero-h1 {
-      font-family: "Bodoni Moda", serif;
-      font-size: clamp(4.6rem, 13vw, 11rem);
-      font-weight: 300; line-height: 0.84; letter-spacing: -0.04em;
-      max-width: 780px;
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(4.4rem, 12.4vw, 10.8rem);
+      font-weight: 300;
+      line-height: 0.82;
+      letter-spacing: -0.045em;
+      max-width: 850px;
+      text-wrap: balance;
     }
-    .hero-h1 em { font-style: italic; color: var(--ivory-dim); }
-    .hero-sub { margin-top: 28px; max-width: 440px; color: var(--ivory-dim); font-size: 0.88rem; font-weight: 300; line-height: 1.8; }
-    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 36px; }
-
+    .hero-h1 em { color: var(--ivory-dim); font-style: italic; }
+    .hero-marquee {
+      width: min(100%, 610px);
+      overflow: hidden;
+      margin-top: 26px;
+      border-block: 1px solid var(--line-soft);
+      background: rgba(255,255,255,0.026);
+      mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+    }
+    .hero-marquee-track {
+      display: flex;
+      width: max-content;
+      animation: heroScroll 18s linear infinite;
+    }
+    .hero-marquee span {
+      padding: 12px 15px;
+      white-space: nowrap;
+      font-size: 0.62rem;
+      font-weight: 800;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--ivory-dim);
+    }
+    .hero-marquee b { color: var(--gold); margin-inline: 5px; }
+    @keyframes heroScroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 28px; }
     .btn-gold, .btn-ghost {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 14px 28px; border-radius: 999px;
-      font-size: 0.64rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase;
-      transition: transform 0.22s, background 0.22s; white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      padding: 14px 26px;
+      border-radius: 999px;
+      font-size: 0.68rem;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      transition: transform 0.22s, background 0.22s, border-color 0.22s, color 0.22s;
+      white-space: nowrap;
     }
-    .btn-gold { background: var(--gold); color: #0a0804; border: 1px solid var(--gold); }
+    .btn-gold { background: var(--gold); color: #111; border: 1px solid var(--gold); }
     .btn-gold:hover { transform: translateY(-2px); background: var(--gold-2); }
     .btn-ghost { border: 1px solid var(--line); color: var(--ivory-dim); background: rgba(255,255,255,0.03); }
-    .btn-ghost:hover { transform: translateY(-2px); color: var(--ivory); border-color: rgba(245,237,224,0.28); }
-
-    /* ── TICKER ── */
-    .ticker { overflow: hidden; border-block: 1px solid var(--line-soft); background: rgba(255,255,255,0.018); position: relative; z-index: 2; }
-    .ticker-track { display: flex; width: max-content; animation: scroll 30s linear infinite; }
-    .ticker-track span {
-      padding: 14px 18px; font-size: 0.58rem; font-weight: 700; letter-spacing: 0.26em;
-      text-transform: uppercase; color: var(--ivory-dim); white-space: nowrap;
+    .btn-ghost:hover { transform: translateY(-2px); color: var(--ivory); border-color: rgba(247,240,223,0.3); }
+    .hero-proof {
+      justify-self: end;
+      max-width: 236px;
+      padding: 20px;
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: rgba(5,5,7,0.45);
+      backdrop-filter: blur(18px);
+      color: var(--ivory-dim);
+      font-size: 0.8rem;
     }
-    .ticker-track b { color: var(--gold); margin: 0 6px; }
-    @keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    .hero-proof strong {
+      display: block;
+      color: var(--ivory);
+      font-family: "Cormorant Garamond", serif;
+      font-size: 2rem;
+      font-weight: 300;
+      line-height: 1;
+      margin-bottom: 7px;
+    }
 
-    /* ── LAYOUT ── */
-    .wrap { width: min(100% - 40px, var(--max)); margin-inline: auto; position: relative; z-index: 2; }
-    section { padding: 110px 0; position: relative; }
-
+    .wrap { width: min(100% - 36px, var(--max)); margin-inline: auto; position: relative; z-index: 2; }
+    section { padding: 96px 0; position: relative; }
     .label {
-      display: inline-flex; align-items: center; gap: 10px;
-      font-size: 0.58rem; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase;
-      color: var(--gold); margin-bottom: 20px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.6rem;
+      font-weight: 800;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 16px;
     }
-    .label-line { width: 20px; height: 1px; background: var(--gold); flex-shrink: 0; }
-
+    .label-line { width: 22px; height: 1px; background: var(--gold); }
     .display-title {
-      font-family: "Bodoni Moda", serif;
-      font-size: clamp(3rem, 7vw, 6.4rem);
-      font-weight: 300; line-height: 0.88; letter-spacing: -0.03em;
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(3rem, 7vw, 6.3rem);
+      font-weight: 300;
+      line-height: 0.9;
+      letter-spacing: -0.035em;
+      text-wrap: balance;
+    }
+    .section-head {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 26px;
+      margin-bottom: 42px;
+    }
+    .section-kicker {
+      max-width: 320px;
+      color: var(--ivory-soft);
+      font-size: 0.85rem;
+      font-weight: 300;
     }
 
-    /* ── INTRO ── */
-    .intro-split {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 3px; margin-top: 56px;
-      border: 1px solid var(--line); border-radius: var(--r); overflow: hidden;
+    .intro-strip {
+      padding-top: 72px;
+      background:
+        radial-gradient(circle at 12% 20%, rgba(216,185,111,0.10), transparent 32%),
+        var(--ink);
     }
-    .intro-text {
-      padding: 54px; display: flex; flex-direction: column; justify-content: space-between;
-      background: rgba(255,255,255,0.026);
-      min-height: 440px;
+    .intro-grid {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 14px;
+      align-items: stretch;
     }
-    .intro-text p { color: var(--ivory-dim); font-size: 0.93rem; font-weight: 300; line-height: 1.9; }
-    .intro-text p + p { margin-top: 18px; }
-    .intro-pills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 32px; }
-    .pill {
-      padding: 7px 15px; border: 1px solid var(--line); border-radius: 999px;
-      font-size: 0.58rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase;
-      color: var(--ivory-dim); background: rgba(255,255,255,0.02);
+    .intro-copy, .image-card {
+      border: 1px solid var(--line);
+      border-radius: var(--r);
+      overflow: hidden;
+      background: var(--glass);
     }
-    .intro-image { position: relative; overflow: hidden; }
-    .intro-image img { width: 100%; height: 100%; object-fit: cover; filter: saturate(0.88); }
-    .intro-image-cap {
-      position: absolute; left: 20px; right: 20px; bottom: 20px;
-      padding: 18px 20px; background: rgba(4,4,4,0.7); backdrop-filter: blur(18px);
-      border: 1px solid rgba(255,255,255,0.1); border-radius: 16px;
+    .intro-copy {
+      padding: 42px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 420px;
     }
-    .intro-image-cap strong { display: block; font-family: "Bodoni Moda", serif; font-size: 1.4rem; font-weight: 300; margin-bottom: 4px; }
-    .intro-image-cap span { font-size: 0.76rem; font-weight: 300; color: var(--ivory-dim); }
+    .intro-copy p {
+      max-width: 450px;
+      color: var(--ivory-dim);
+      font-size: 0.98rem;
+      font-weight: 300;
+    }
+    .intro-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 26px; }
+    .tag {
+      padding: 8px 14px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      font-size: 0.6rem;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--ivory-dim);
+      background: rgba(255,255,255,0.025);
+    }
+    .image-card { min-height: 420px; position: relative; }
+    .image-card img { width: 100%; height: 100%; object-fit: cover; filter: saturate(0.88) contrast(1.04); }
+    .image-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 50%, rgba(4,4,5,0.62) 100%);
+      pointer-events: none;
+    }
 
-    /* ── FILMS ── */
-    .films-section { background: linear-gradient(180deg, var(--ink) 0%, var(--ink-2) 100%); }
-    .section-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 28px; margin-bottom: 48px; flex-wrap: wrap; }
+    .films-section {
+      background:
+        radial-gradient(circle at 20% 24%, rgba(52,19,27,0.36), transparent 42%),
+        linear-gradient(180deg, var(--ink) 0%, var(--ink-2) 100%);
+    }
     .film-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
-
     .film-card {
-      border: 1px solid var(--line); border-radius: var(--r); overflow: hidden;
-      background: rgba(255,255,255,0.03);
-      transition: transform 0.3s ease, border-color 0.3s ease;
+      border: 1px solid var(--line);
+      border-radius: var(--r);
+      overflow: hidden;
+      background: rgba(255,255,255,0.04);
+      transition: transform 0.28s ease, border-color 0.28s ease;
     }
-    .film-card:hover { transform: translateY(-7px); border-color: rgba(201,169,110,0.36); }
+    .film-card:hover { transform: translateY(-6px); border-color: rgba(216,185,111,0.34); }
     .film-video { aspect-ratio: 9 / 15; background: #000; position: relative; overflow: hidden; }
     .film-video video { width: 100%; height: 100%; object-fit: cover; opacity: 0.92; }
-    .film-info { padding: 22px 24px 28px; }
-    .film-info .tag { font-size: 0.56rem; font-weight: 700; letter-spacing: 0.24em; text-transform: uppercase; color: var(--gold); }
-    .film-info h3 { font-family: "Bodoni Moda", serif; font-size: 1.85rem; font-weight: 300; line-height: 1; margin: 8px 0 6px; }
-    .film-info p { color: var(--ivory-dim); font-size: 0.8rem; font-weight: 300; }
+    .film-video::after {
+      content: attr(data-label);
+      position: absolute;
+      left: 14px; bottom: 14px;
+      padding: 7px 11px;
+      border-radius: 999px;
+      background: rgba(5,5,7,0.62);
+      backdrop-filter: blur(12px);
+      color: var(--gold-2);
+      font-size: 0.56rem;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+    .film-info { padding: 20px 22px 23px; }
+    .film-info span { font-size: 0.58rem; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); }
+    .film-info h3 { font-family: "Cormorant Garamond", serif; font-size: 1.9rem; line-height: 1; font-weight: 300; margin-top: 8px; }
 
-    /* ── SERVICES ── */
+    .motion-break {
+      min-height: 640px;
+      overflow: hidden;
+      display: grid;
+      place-items: end start;
+      padding: 0;
+      isolation: isolate;
+      background: #000;
+    }
+    .motion-break video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -3;
+      filter: saturate(0.86) contrast(1.06);
+    }
+    .motion-break::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      background:
+        linear-gradient(90deg, rgba(4,4,5,0.82), rgba(4,4,5,0.28)),
+        linear-gradient(180deg, rgba(4,4,5,0.12), rgba(4,4,5,0.9));
+    }
+    .motion-copy { padding: 80px 0; }
+    .motion-copy .display-title { max-width: 760px; }
+
     .services-section { background: var(--ink-2); }
     .services-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
     .svc-card {
-      border: 1px solid var(--line); border-radius: var(--r); overflow: hidden;
-      background: rgba(255,255,255,0.03);
-      transition: transform 0.3s, border-color 0.3s;
+      border: 1px solid var(--line);
+      border-radius: var(--r);
+      overflow: hidden;
+      background: rgba(255,255,255,0.035);
+      transition: transform 0.3s ease, border-color 0.3s;
     }
-    .svc-card:hover { transform: translateY(-7px); border-color: rgba(201,169,110,0.36); }
+    .svc-card:hover { transform: translateY(-6px); border-color: rgba(216,185,111,0.36); }
     .svc-img { position: relative; aspect-ratio: 3 / 4; overflow: hidden; }
-    .svc-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s, filter 0.4s; filter: saturate(0.84) brightness(0.9); }
-    .svc-card:hover .svc-img img { transform: scale(1.07); filter: saturate(1) brightness(1); }
-    .svc-num {
-      position: absolute; top: 14px; left: 14px;
-      font-size: 0.56rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;
-      color: var(--gold-2); background: rgba(4,4,4,0.65); backdrop-filter: blur(14px);
-      padding: 7px 12px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.1);
-    }
-    .svc-info { padding: 20px 22px 26px; }
-    .svc-info h3 { font-family: "Bodoni Moda", serif; font-size: 1.65rem; font-weight: 300; line-height: 1; margin-bottom: 8px; }
-    .svc-info p { color: var(--ivory-dim); font-size: 0.78rem; font-weight: 300; line-height: 1.7; }
+    .svc-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s ease, filter 0.4s; filter: saturate(0.86) brightness(0.92); }
+    .svc-card:hover .svc-img img { transform: scale(1.07); filter: saturate(1.02) brightness(1); }
+    .svc-info { padding: 22px 22px 25px; }
+    .svc-info h3 { font-family: "Cormorant Garamond", serif; font-size: 1.75rem; font-weight: 300; line-height: 1; margin-bottom: 7px; }
+    .svc-info p { color: var(--ivory-dim); font-size: 0.8rem; font-weight: 300; line-height: 1.55; }
 
-    /* ── VIDEO REEL SECTION ── */
-    .reel-section {
-      position: relative; overflow: hidden; min-height: 86vh;
-      display: flex; align-items: center; justify-content: center;
-      isolation: isolate; padding: 0;
-    }
-    .reel-video {
-      position: absolute; inset: 0; z-index: -2;
-    }
-    .reel-video video {
-      width: 100%; height: 100%; object-fit: cover;
-      filter: brightness(0.55) saturate(0.8);
-    }
-    .reel-overlay {
-      position: absolute; inset: 0; z-index: -1;
-      background:
-        linear-gradient(180deg, rgba(4,4,4,0.55) 0%, rgba(4,4,4,0.18) 40%, rgba(4,4,4,0.52) 100%),
-        linear-gradient(90deg, rgba(4,4,4,0.4), transparent 60%);
-    }
-    .reel-inner {
-      position: relative; z-index: 2;
-      width: min(100% - 40px, var(--max));
-      margin-inline: auto;
-      text-align: center; padding: 120px 0;
-    }
-    .reel-inner .display-title { font-size: clamp(3.6rem, 9vw, 8.4rem); max-width: 820px; margin-inline: auto; }
-    .reel-inner .display-title em { font-style: italic; color: var(--gold); }
-    .reel-line {
-      width: 1px; height: 64px; background: linear-gradient(180deg, transparent, var(--gold), transparent);
-      margin: 40px auto;
-    }
-    .reel-inner .eyebrow { justify-content: center; margin-bottom: 28px; }
-
-    /* ── GALLERY ── */
-    .gallery-section { background: var(--ink-2); }
-    .mosaic { display: grid; grid-template-columns: repeat(12, 1fr); grid-auto-rows: 148px; gap: 10px; }
-    .m-item { overflow: hidden; border-radius: 22px; border: 1px solid var(--line-soft); position: relative; background: #000; }
+    .gallery-section { background: #07070a; }
+    .mosaic { display: grid; grid-template-columns: repeat(12, 1fr); grid-auto-rows: 155px; gap: 10px; }
+    .m-item { overflow: hidden; border-radius: 24px; border: 1px solid var(--line-soft); position: relative; background: #000; }
     .m-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.75s ease, filter 0.4s; filter: saturate(0.88); }
-    .m-item:hover img { transform: scale(1.08); filter: saturate(1.1); }
+    .m-item:hover img { transform: scale(1.08); filter: saturate(1.05); }
     .m-item::after {
-      content: attr(data-l); position: absolute; bottom: 12px; left: 12px;
-      font-size: 0.54rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase;
-      color: var(--ivory-dim); padding: 7px 11px; background: rgba(4,4,4,0.58); backdrop-filter: blur(12px);
-      border-radius: 999px; border: 1px solid rgba(255,255,255,0.1);
+      content: attr(data-l);
+      position: absolute;
+      bottom: 13px; left: 13px;
+      font-size: 0.56rem;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--ivory-dim);
+      padding: 7px 11px;
+      background: rgba(5,5,7,0.58);
+      backdrop-filter: blur(12px);
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.11);
     }
     .m-w { grid-column: span 5; grid-row: span 2; }
     .m-t { grid-column: span 3; grid-row: span 3; }
     .m-s { grid-column: span 4; grid-row: span 2; }
     .m-m { grid-column: span 4; grid-row: span 3; }
 
-    /* ── ABOUT ── */
-    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; align-items: stretch; }
-    .about-card {
-      padding: 54px; border: 1px solid var(--line); border-radius: var(--r);
-      background: rgba(255,255,255,0.025);
-      display: flex; flex-direction: column; justify-content: space-between;
-    }
-    .about-card p { color: var(--ivory-dim); font-size: 0.9rem; font-weight: 300; line-height: 1.9; }
-    .about-card p + p { margin-top: 16px; }
-    .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 36px; }
-    .stat { padding: 18px 12px; background: rgba(255,255,255,0.04); border: 1px solid var(--line-soft); border-radius: 16px; text-align: center; }
-    .stat strong { display: block; font-family: "Bodoni Moda", serif; font-size: 2.2rem; font-weight: 300; color: var(--gold-2); line-height: 1; margin-bottom: 5px; }
-    .stat span { font-size: 0.54rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ivory-dim); }
-    .about-photo { border-radius: var(--r); overflow: hidden; border: 1px solid var(--line); position: relative; min-height: 520px; background: #000; }
-    .about-photo img { width: 100%; height: 100%; object-fit: cover; filter: saturate(0.9); }
-    .float-card {
-      position: absolute; left: 16px; right: 16px; bottom: 16px;
-      background: rgba(4,4,4,0.74); backdrop-filter: blur(20px);
-      border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 16px 20px;
-      font-size: 0.8rem; color: var(--ivory-dim); font-weight: 300;
-    }
-    .float-card strong { display: block; color: var(--ivory); margin-bottom: 3px; font-size: 0.86rem; font-weight: 500; }
-
-    /* ── CONTACT ── */
-    .contact-section { padding-bottom: 72px; }
+    .contact-section { padding-bottom: 66px; background: var(--ink); }
     .contact-panel {
-      border: 1px solid rgba(201,169,110,0.15); border-radius: var(--r);
-      padding: 64px;
-      display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 40px; align-items: center;
+      border: 1px solid rgba(216,185,111,0.18);
+      border-radius: var(--r);
+      padding: 58px;
+      display: grid;
+      grid-template-columns: 1.08fr 0.92fr;
+      gap: 36px;
+      align-items: center;
       background:
-        radial-gradient(circle at 78% 18%, rgba(201,169,110,0.1), transparent 44%),
-        rgba(255,255,255,0.035);
-      backdrop-filter: blur(12px);
+        radial-gradient(circle at 80% 20%, rgba(216,185,111,0.12), transparent 42%),
+        radial-gradient(circle at 18% 78%, rgba(52,19,27,0.30), transparent 44%),
+        rgba(255,255,255,0.046);
+      backdrop-filter: blur(10px);
     }
-    .contact-panel p { color: var(--ivory-dim); font-size: 0.9rem; font-weight: 300; margin-top: 18px; max-width: 500px; line-height: 1.85; }
     .contact-actions { display: grid; gap: 10px; }
-    .info-chip { padding: 16px 20px; border: 1px solid var(--line-soft); border-radius: 16px; background: rgba(255,255,255,0.03); }
-    .info-chip span { display: block; font-size: 0.54rem; font-weight: 700; letter-spacing: 0.24em; text-transform: uppercase; color: var(--gold); margin-bottom: 4px; }
-    .info-chip strong { font-size: 0.86rem; font-weight: 400; }
+    .info-chip { padding: 17px 20px; border: 1px solid var(--line-soft); border-radius: 18px; background: rgba(255,255,255,0.04); }
+    .info-chip span { display: block; font-size: 0.58rem; font-weight: 800; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 3px; }
+    .info-chip strong { font-size: 0.9rem; font-weight: 400; }
 
-    /* ── FOOTER ── */
-    footer { padding: 28px 0; border-top: 1px solid var(--line-soft); position: relative; z-index: 2; }
-    .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; font-size: 0.7rem; color: var(--ivory-dim); font-weight: 300; }
-    .footer-inner b { color: var(--ivory); font-weight: 600; }
-    .footer-inner a { color: var(--gold); border-bottom: 1px solid rgba(201,169,110,0.3); }
+    footer { padding: 30px 0; border-top: 1px solid var(--line-soft); position: relative; z-index: 2; }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; font-size: 0.74rem; color: var(--ivory-dim); font-weight: 300; }
+    .footer-inner b, .footer-inner a { color: var(--ivory); font-weight: 600; }
+    .footer-inner a { border-bottom: 1px solid rgba(216,185,111,0.35); }
 
-    /* ── REVEAL ── */
-    .reveal { opacity: 0; transform: translateY(26px); transition: opacity 0.8s ease, transform 0.85s cubic-bezier(0.16,1,0.3,1); }
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.16,1,0.3,1); }
     .reveal.in { opacity: 1; transform: none; }
     .reveal-delay-1 { transition-delay: 0.1s; }
     .reveal-delay-2 { transition-delay: 0.2s; }
     .reveal-delay-3 { transition-delay: 0.3s; }
     .reveal-delay-4 { transition-delay: 0.4s; }
 
-    /* ── RESPONSIVE ── */
     @media (max-width: 1040px) {
-      .hero-content, .about-grid, .contact-panel { grid-template-columns: 1fr; }
+      .hero-content, .intro-grid, .contact-panel { grid-template-columns: 1fr; }
+      .hero-proof { justify-self: start; }
+      .hero-video-card { display: none; }
       .film-grid { grid-template-columns: 1fr 1fr; }
       .services-grid { grid-template-columns: repeat(2, 1fr); }
-      .intro-split { grid-template-columns: 1fr; }
-      .intro-image { min-height: 420px; }
+      .section-head { align-items: flex-start; flex-direction: column; }
       .mosaic { grid-template-columns: repeat(6, 1fr); }
-      .m-w { grid-column: span 4; } .m-t { grid-column: span 2; }
-      .m-s { grid-column: span 3; } .m-m { grid-column: span 3; }
+      .m-w { grid-column: span 4; }
+      .m-t { grid-column: span 2; }
+      .m-s { grid-column: span 3; }
+      .m-m { grid-column: span 3; }
     }
 
-    @media (max-width: 740px) {
+    @media (max-width: 720px) {
       .nav-links, .nav-cta { display: none; }
       .burger { display: inline-flex; }
-      section { padding: 72px 0; }
-      .hero-h1 { font-size: clamp(4rem, 18vw, 6.5rem); }
-      .hero-actions { display: grid; grid-template-columns: 1fr 1fr; }
-      .btn-gold, .btn-ghost { padding: 13px 14px; font-size: 0.62rem; }
-      .intro-text { padding: 30px 26px; min-height: auto; }
-      .film-grid, .services-grid { grid-template-columns: 1fr; }
-      .film-video { aspect-ratio: 9 / 13; }
-      .about-card { padding: 30px 26px; }
-      .about-photo { min-height: 340px; }
-      .contact-panel { padding: 32px 26px; }
-      .display-title { font-size: clamp(2.7rem, 10vw, 4.5rem); }
-      .reel-inner .display-title { font-size: clamp(3rem, 12vw, 5rem); }
+      .nav-inner { width: min(100% - 28px, var(--max)); }
+      .brand img { width: 38px; height: 38px; }
+      .brand span { font-size: 0.68rem; letter-spacing: 0.14em; }
+
+      .wrap { width: min(100% - 28px, var(--max)); }
+      section { padding: 68px 0; }
+      .hero { min-height: 100svh; }
+      .hero-bg { background-position: center top; }
+      .hero::before {
+        background:
+          linear-gradient(180deg, rgba(4,4,5,0.2) 0%, rgba(4,4,5,0.12) 34%, rgba(4,4,5,0.82) 74%, rgba(4,4,5,0.98) 100%);
+      }
+      .hero-content { padding: 126px 0 46px; gap: 20px; }
+      .eyebrow { font-size: 0.56rem; letter-spacing: 0.2em; margin-bottom: 14px; }
+      .hero-h1 { font-size: clamp(4.15rem, 20vw, 6.8rem); line-height: 0.84; max-width: 100%; }
+      .hero-marquee { width: 100%; margin-top: 22px; }
+      .hero-marquee span { padding: 11px 13px; font-size: 0.58rem; letter-spacing: 0.18em; }
+      .hero-actions { display: grid; grid-template-columns: 1fr 1fr; width: 100%; gap: 9px; }
+      .btn-gold, .btn-ghost { padding: 13px 14px; font-size: 0.62rem; letter-spacing: 0.12em; }
+      .hero-proof { max-width: 100%; font-size: 0.78rem; padding: 17px; }
+
+      .display-title { font-size: clamp(2.65rem, 12vw, 4.6rem); }
+      .section-head { margin-bottom: 28px; gap: 12px; }
+      .section-kicker { font-size: 0.8rem; max-width: 100%; }
+      .intro-strip { padding-top: 58px; }
+      .intro-copy { padding: 28px 24px; min-height: auto; }
+      .intro-copy p { font-size: 0.9rem; }
+      .image-card { min-height: 340px; }
+
+      .film-grid { grid-template-columns: 1fr; gap: 12px; }
+      .film-card { border-radius: 24px; }
+      .film-video { aspect-ratio: 9 / 14; max-height: 560px; }
+      .film-info { padding: 17px 18px 20px; }
+      .film-info h3 { font-size: 1.72rem; }
+
+      .motion-break { min-height: 520px; }
+      .motion-copy { padding: 64px 0; }
+
+      .services-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+      .svc-card { border-radius: 22px; }
+      .svc-img { aspect-ratio: 4 / 5; }
+      .svc-info { padding: 16px; }
+      .svc-info h3 { font-size: 1.35rem; }
+      .svc-info p { font-size: 0.74rem; line-height: 1.45; }
+
       .mosaic { display: flex; flex-direction: column; gap: 10px; }
-      .m-item { height: 250px; border-radius: 18px; }
-      .section-head { flex-direction: column; align-items: flex-start; }
+      .m-item { height: 265px; border-radius: 20px; }
+      .m-item:nth-child(2), .m-item:nth-child(4) { height: 360px; }
+      .m-w, .m-t, .m-s, .m-m { grid-column: unset; grid-row: unset; }
+
+      .contact-panel { padding: 28px 24px; gap: 24px; }
+      .contact-actions .btn-gold { width: 100%; }
+      .footer-inner { align-items: flex-start; flex-direction: column; }
     }
 
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after { animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; scroll-behavior:auto !important; }
+    @media (max-width: 420px) {
+      .brand span { max-width: 190px; overflow: hidden; text-overflow: ellipsis; }
+      .hero-actions { grid-template-columns: 1fr; }
+      .services-grid { grid-template-columns: 1fr; }
+      .svc-img { aspect-ratio: 16 / 12; }
     }
   </style>
 </head>
 
 <body>
   <div id="loader">
-    <img class="loader-mark" src="somikky_imagery-logo - Transperent.png" alt="Somikky Imagery" />
+    <img class="loader-mark" src="somikky_imagery-logo - Transperent.png" alt="Somikky Imagery logo" />
     <div class="loader-name">Somikky Imagery</div>
     <div class="loader-bar-wrap"><div class="loader-bar"></div></div>
   </div>
@@ -439,17 +675,19 @@
 
   <nav id="mainNav">
     <div class="nav-inner">
-      <a href="#home" class="brand" aria-label="Somikky Imagery">
-        <img src="somikky_imagery-logo - Transperent.png" alt="" />
+      <a href="#home" class="brand">
+        <img src="somikky_imagery-logo - Transperent.png" alt="Somikky Imagery logo" />
         <span>Somikky Imagery</span>
       </a>
+
       <div class="nav-links">
         <a href="#films">Films</a>
-        <a href="#services">Services</a>
-        <a href="#gallery">Gallery</a>
-        <a href="#about">About</a>
+        <a href="#services">Coverage</a>
+        <a href="#gallery">Frames</a>
       </div>
+
       <a class="nav-cta" href="https://www.instagram.com/somikky_imagery/" target="_blank" rel="noopener">Book Now</a>
+
       <button class="burger" id="burgerBtn" aria-label="Menu" aria-expanded="false">
         <span></span><span></span>
       </button>
@@ -458,220 +696,178 @@
 
   <div class="mob-menu" id="mobMenu">
     <a href="#films">Films</a>
-    <a href="#services">Services</a>
-    <a href="#gallery">Gallery</a>
-    <a href="#about">About</a>
+    <a href="#services">Coverage</a>
+    <a href="#gallery">Frames</a>
     <a href="#contact">Book Now</a>
   </div>
 
-  <!-- HERO -->
   <header class="hero" id="home">
     <div class="hero-bg"></div>
-    <div class="hero-overlay"></div>
+    <div class="hero-video-card" aria-hidden="true">
+      <video src="somikky_imagery-video-1.mp4" autoplay muted loop playsinline preload="auto" poster="somikky_imagery-image3.jpg"></video>
+    </div>
+
     <div class="hero-content">
-      <div class="eyebrow">Abuja &amp; Southeast Nigeria</div>
-      <h1 class="hero-h1">Your day,<br><em>cinematic.</em></h1>
-      <p class="hero-sub">Luxury event films for weddings, celebrations, and portraits — crafted with mood, light, and intention.</p>
-      <div class="hero-actions">
-        <a class="btn-gold" href="https://www.instagram.com/somikky_imagery/" target="_blank" rel="noopener">Book a Film</a>
-        <a class="btn-ghost" href="#films">View Films ↓</a>
+      <div>
+        <div class="eyebrow">Abuja | Southeast Videographer</div>
+        <h1 class="hero-h1">Memories<br><em>in motion.</em></h1>
+        <div class="hero-marquee" aria-label="Somikky Imagery services">
+          <div class="hero-marquee-track">
+            <span>Weddings <b>·</b></span><span>Couples <b>·</b></span><span>Events <b>·</b></span><span>Celebrations <b>·</b></span><span>Portrait Films <b>·</b></span><span>Luxury Reels <b>·</b></span>
+            <span>Weddings <b>·</b></span><span>Couples <b>·</b></span><span>Events <b>·</b></span><span>Celebrations <b>·</b></span><span>Portrait Films <b>·</b></span><span>Luxury Reels <b>·</b></span>
+          </div>
+        </div>
+        <div class="hero-actions">
+          <a class="btn-gold" href="https://www.instagram.com/somikky_imagery/" target="_blank" rel="noopener">Book Now</a>
+          <a class="btn-ghost" href="#films">Watch Films</a>
+        </div>
+      </div>
+
+      <div class="hero-proof">
+        <strong>3.3k+</strong>
+        followers. Event films for love, family, and celebration.
       </div>
     </div>
   </header>
 
-  <div class="ticker" aria-hidden="true">
-    <div class="ticker-track">
-      <span>Wedding Films <b>·</b></span><span>Event Coverage <b>·</b></span><span>Luxury Reels <b>·</b></span><span>Portrait Films <b>·</b></span><span>Abuja <b>·</b></span><span>Southeast Nigeria <b>·</b></span><span>Moments Preserved <b>·</b></span>
-      <span>Wedding Films <b>·</b></span><span>Event Coverage <b>·</b></span><span>Luxury Reels <b>·</b></span><span>Portrait Films <b>·</b></span><span>Abuja <b>·</b></span><span>Southeast Nigeria <b>·</b></span><span>Moments Preserved <b>·</b></span>
-    </div>
-  </div>
-
   <main>
-    <!-- INTRO -->
-    <section id="intro">
-      <div class="wrap">
-        <div class="reveal">
-          <div class="label"><span class="label-line"></span> The Work</div>
-          <h2 class="display-title">Not just coverage.<br>A private cinema<br>of the day.</h2>
+    <section class="intro-strip" id="intro">
+      <div class="wrap intro-grid">
+        <div class="intro-copy reveal">
+          <div>
+            <div class="label"><span class="label-line"></span> Somikky Imagery</div>
+            <h2 class="display-title">For the moments that move.</h2>
+          </div>
+          <div>
+            <p>Cinematic event coverage for weddings, couples, and celebrations across Abuja and the Southeast.</p>
+            <div class="intro-tags">
+              <span class="tag">Cinematic</span>
+              <span class="tag">Event Films</span>
+              <span class="tag">Couples</span>
+              <span class="tag">Luxury Reels</span>
+            </div>
+          </div>
         </div>
-        <div class="intro-split reveal reveal-delay-1">
-          <div class="intro-text">
-            <div>
-              <p>Every wedding, every celebration, every couple — filmed with the patience to catch what a photo can't hold: movement, laughter, tears, the small moments that make a day yours.</p>
-              <p>Somikky Imagery documents events across Abuja and Southeast Nigeria with a cinematic eye and a quiet presence, so you never feel filmed — only remembered.</p>
-            </div>
-            <div class="intro-pills">
-              <span class="pill">Cinematic</span>
-              <span class="pill">Luxury Events</span>
-              <span class="pill">Weddings</span>
-              <span class="pill">Portraits</span>
-              <span class="pill">Reels</span>
-            </div>
-          </div>
-          <div class="intro-image">
-            <img src="somikky_imagery-image2.jpg" alt="Somikky Imagery event moment" loading="lazy" />
-            <div class="intro-image-cap">
-              <strong>Memories begin with us.</strong>
-              <span>Serving couples and families across Nigeria.</span>
-            </div>
-          </div>
+
+        <div class="image-card reveal reveal-delay-1">
+          <img src="somikky_imagery-image2.jpg" alt="Somikky Imagery event moment" loading="lazy" />
         </div>
       </div>
     </section>
 
-    <!-- FILMS -->
     <section id="films" class="films-section">
       <div class="wrap">
         <div class="section-head reveal">
           <div>
-            <div class="label"><span class="label-line"></span> Client Films</div>
-            <h2 class="display-title">Motion sells<br>the emotion.</h2>
+            <div class="label"><span class="label-line"></span> Featured Videos</div>
+            <h2 class="display-title">Clients. Love. Celebration.</h2>
           </div>
-          <a class="btn-ghost" href="https://www.instagram.com/somikky_imagery/" target="_blank" rel="noopener">See All on Instagram ↗</a>
+          <p class="section-kicker">Short cinematic edits for moments worth replaying.</p>
         </div>
 
         <div class="film-grid">
           <article class="film-card reveal reveal-delay-1">
-            <div class="film-video">
-              <video autoplay muted loop playsinline preload="metadata" src="somikky_imagery-video-1.mp4" poster="somikky_imagery-image3.jpg"></video>
+            <div class="film-video" data-label="Client Video">
+              <video src="somikky_imagery-video-1.mp4" autoplay muted loop playsinline preload="auto" poster="somikky_imagery-image3.jpg"></video>
             </div>
             <div class="film-info">
-              <div class="tag">Wedding Film · Abuja</div>
-              <h3>Adaeze &amp; Tunde</h3>
-              <p>Reception highlights, dances, family, and a night the couple will replay forever.</p>
+              <span>Video 01</span>
+              <h3>Couple Highlight</h3>
             </div>
           </article>
 
           <article class="film-card reveal reveal-delay-2">
-            <div class="film-video">
-              <video autoplay muted loop playsinline preload="metadata" src="somikky_imagery-video2.mp4" poster="somikky_imagery-image4.jpg"></video>
+            <div class="film-video" data-label="Client Video">
+              <video src="somikky_imagery-video2.mp4" autoplay muted loop playsinline preload="auto" poster="somikky_imagery-image4.jpg"></video>
             </div>
             <div class="film-info">
-              <div class="tag">Wedding Film · Southeast</div>
-              <h3>Chioma &amp; David</h3>
-              <p>From the traditional ceremony to the white wedding — every moment captured in full.</p>
+              <span>Video 02</span>
+              <h3>Wedding Moment</h3>
             </div>
           </article>
 
           <article class="film-card reveal reveal-delay-3">
-            <div class="film-video">
-              <video autoplay muted loop playsinline preload="metadata" src="somikky_imagery-video3.mp4" poster="somikky_imagery-image5.jpg"></video>
+            <div class="film-video" data-label="Client Video">
+              <video src="somikky_imagery-video3.mp4" autoplay muted loop playsinline preload="auto" poster="somikky_imagery-image5.jpg"></video>
             </div>
             <div class="film-info">
-              <div class="tag">Celebration Film · Enugu</div>
-              <h3>Ngozi &amp; Emeka</h3>
-              <p>A celebration film built for sharing, replaying, and remembering long after the day.</p>
+              <span>Video 03</span>
+              <h3>Celebration Reel</h3>
             </div>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- SERVICES -->
+    <section class="motion-break" id="motion">
+      <video src="somikky_imagery-video2.mp4" autoplay muted loop playsinline preload="auto" poster="somikky_imagery-image6.jpg"></video>
+      <div class="wrap motion-copy reveal">
+        <div class="label"><span class="label-line"></span> In Motion</div>
+        <h2 class="display-title">The feeling should be seen before it is explained.</h2>
+      </div>
+    </section>
+
     <section id="services" class="services-section">
       <div class="wrap">
         <div class="section-head reveal">
           <div>
-            <div class="label"><span class="label-line"></span> Services</div>
-            <h2 class="display-title">What we capture.</h2>
+            <div class="label"><span class="label-line"></span> Coverage</div>
+            <h2 class="display-title">What clients can book.</h2>
           </div>
         </div>
+
         <div class="services-grid">
           <article class="svc-card reveal reveal-delay-1">
-            <div class="svc-img"><img src="somikky_imagery-image3.jpg" alt="Wedding videography" loading="lazy" /><span class="svc-num">01</span></div>
-            <div class="svc-info"><h3>Weddings</h3><p>Full coverage — entrances, vows, reception, guest moments, and emotional highlights.</p></div>
+            <div class="svc-img"><img src="somikky_imagery-image3.jpg" alt="Wedding videography" loading="lazy" /></div>
+            <div class="svc-info"><h3>Weddings</h3><p>Full-day memories, vows, reception, family, and highlights.</p></div>
           </article>
           <article class="svc-card reveal reveal-delay-2">
-            <div class="svc-img"><img src="somikky_imagery-image4.jpg" alt="Event videography" loading="lazy" /><span class="svc-num">02</span></div>
-            <div class="svc-info"><h3>Events</h3><p>Birthdays, ceremonies, launches, and social celebrations across Abuja and the Southeast.</p></div>
+            <div class="svc-img"><img src="somikky_imagery-image4.jpg" alt="Couple videography" loading="lazy" /></div>
+            <div class="svc-info"><h3>Couples</h3><p>Pre-wedding, anniversary, and love-story edits.</p></div>
           </article>
           <article class="svc-card reveal reveal-delay-3">
-            <div class="svc-img"><img src="somikky_imagery-image5.jpg" alt="Portrait sessions" loading="lazy" /><span class="svc-num">03</span></div>
-            <div class="svc-info"><h3>Portrait Films</h3><p>Personal videos for brand moments, pre-wedding shoots, and creative portrait sessions.</p></div>
+            <div class="svc-img"><img src="somikky_imagery-image5.jpg" alt="Event videography" loading="lazy" /></div>
+            <div class="svc-info"><h3>Events</h3><p>Birthdays, parties, ceremonies, launches, and social events.</p></div>
           </article>
           <article class="svc-card reveal reveal-delay-4">
-            <div class="svc-img"><img src="somikky_imagery-image6.jpg" alt="Social media reels" loading="lazy" /><span class="svc-num">04</span></div>
-            <div class="svc-info"><h3>Reels</h3><p>Short luxury edits for Instagram and TikTok — event recaps that feel expensive.</p></div>
+            <div class="svc-img"><img src="somikky_imagery-image6.jpg" alt="Social media reels" loading="lazy" /></div>
+            <div class="svc-info"><h3>Reels</h3><p>Short cinematic cuts for Instagram, TikTok, and status.</p></div>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- VIDEO REEL SECTION -->
-    <section class="reel-section" id="reel" aria-label="Featured reel">
-      <div class="reel-video">
-        <video autoplay muted loop playsinline preload="metadata" src="somikky_imagery-video-1.mp4"></video>
-      </div>
-      <div class="reel-overlay"></div>
-      <div class="reel-inner">
-        <div class="eyebrow">Somikky Imagery</div>
-        <h2 class="display-title">Soft light.<br><em>Sharp memory.</em></h2>
-        <div class="reel-line" aria-hidden="true"></div>
-        <a class="btn-gold" href="https://www.instagram.com/somikky_imagery/" target="_blank" rel="noopener">Book Your Film</a>
-      </div>
-    </section>
-
-    <!-- GALLERY -->
     <section id="gallery" class="gallery-section">
       <div class="wrap">
-        <div class="section-head reveal" style="margin-bottom:42px;">
+        <div class="section-head reveal">
           <div>
-            <div class="label"><span class="label-line"></span> Gallery</div>
-            <h2 class="display-title">Frames that<br>prove the eye.</h2>
+            <div class="label"><span class="label-line"></span> Frames</div>
+            <h2 class="display-title">Still proof of the eye.</h2>
           </div>
           <a class="btn-ghost" href="https://www.instagram.com/somikky_imagery/" target="_blank" rel="noopener">See Instagram ↗</a>
         </div>
+
         <div class="mosaic">
-          <div class="m-item m-w reveal" data-l="Cover"><img src="somikky_imagery-image1.jpg" alt="" loading="lazy" /></div>
-          <div class="m-item m-t reveal reveal-delay-1" data-l="Ceremony"><img src="somikky_imagery-image2.jpg" alt="" loading="lazy" /></div>
-          <div class="m-item m-s reveal reveal-delay-2" data-l="Reception"><img src="somikky_imagery-image3.jpg" alt="" loading="lazy" /></div>
-          <div class="m-item m-m reveal reveal-delay-1" data-l="Portrait"><img src="somikky_imagery-image4.jpg" alt="" loading="lazy" /></div>
-          <div class="m-item m-s reveal reveal-delay-2" data-l="Details"><img src="somikky_imagery-image7.jpg" alt="" loading="lazy" /></div>
+          <div class="m-item m-w reveal" data-l="Wedding"><img src="somikky_imagery-image1.jpg" alt="Somikky Imagery wedding frame" loading="lazy" /></div>
+          <div class="m-item m-t reveal reveal-delay-1" data-l="Couple"><img src="somikky_imagery-image2.jpg" alt="Somikky Imagery couple frame" loading="lazy" /></div>
+          <div class="m-item m-s reveal reveal-delay-2" data-l="Event"><img src="somikky_imagery-image3.jpg" alt="Somikky Imagery event frame" loading="lazy" /></div>
+          <div class="m-item m-m reveal reveal-delay-1" data-l="Love"><img src="somikky_imagery-image4.jpg" alt="Somikky Imagery love frame" loading="lazy" /></div>
+          <div class="m-item m-s reveal reveal-delay-2" data-l="Details"><img src="somikky_imagery-image7.jpg" alt="Somikky Imagery detail frame" loading="lazy" /></div>
         </div>
       </div>
     </section>
 
-    <!-- ABOUT -->
-    <section id="about">
-      <div class="wrap">
-        <div class="about-grid">
-          <div class="about-card reveal">
-            <div>
-              <div class="label"><span class="label-line"></span> About</div>
-              <h2 class="display-title" style="margin-bottom:28px;">For people who want the day to feel alive again.</h2>
-              <p>Somikky Imagery is an Abuja and Southeast event videography brand, making films for couples and families who care deeply about how their memories look, move, and feel.</p>
-              <p>A quiet presence at every event — so the film you receive captures what actually happened, not a posed version of it.</p>
-            </div>
-            <div class="stats">
-              <div class="stat"><strong>98</strong><span>Posts</span></div>
-              <div class="stat"><strong>3.3k</strong><span>Followers</span></div>
-              <div class="stat"><strong>2</strong><span>Regions</span></div>
-            </div>
-          </div>
-          <div class="about-photo reveal reveal-delay-2">
-            <img src="somikky_imagery-image5.jpg" alt="Somikky Imagery" loading="lazy" />
-            <div class="float-card">
-              <strong>Abuja &amp; Southeast Nigeria</strong>
-              Cinematic coverage for events that deserve to be remembered beautifully.
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CONTACT -->
     <section id="contact" class="contact-section">
       <div class="wrap">
         <div class="contact-panel reveal">
           <div>
             <div class="label"><span class="label-line"></span> Booking</div>
-            <h2 class="display-title">Ready to turn your event into a film?</h2>
-            <p>Send your event type, date, location, and the style of video you have in mind.</p>
+            <h2 class="display-title">Memories begin with us.</h2>
           </div>
           <div class="contact-actions">
             <a class="btn-gold" href="https://www.instagram.com/somikky_imagery/" target="_blank" rel="noopener">Book on Instagram</a>
             <div class="info-chip"><span>Location</span><strong>Abuja and Southeast Nigeria</strong></div>
-            <div class="info-chip"><span>Booking</span><strong>Send event type, date, location, and style.</strong></div>
+            <div class="info-chip"><span>For booking</span><strong>Send date, location, and event type.</strong></div>
           </div>
         </div>
       </div>
@@ -680,34 +876,56 @@
 
   <footer>
     <div class="wrap footer-inner">
-      <span>© 2026 <b>Somikky Imagery.</b> All rights reserved.</span>
-      <span>Site by <a href="https://builtbysammie.github.io/portfolio/" target="_blank" rel="noopener">Sammie</a>.</span>
+      <span>© 2026 <b>Somikky Imagery.</b></span>
+      <span>Website concept <a href="https://builtbysammie.github.io/portfolio/" target="_blank" rel="noopener">built by sammie</a>.</span>
     </div>
   </footer>
 
   <script>
     window.addEventListener('load', () => {
-      setTimeout(() => document.getElementById('loader').classList.add('done'), 2300);
+      setTimeout(() => {
+        document.getElementById('loader').classList.add('done');
+      }, 1900);
+
+      document.querySelectorAll('video[autoplay]').forEach(video => {
+        video.muted = true;
+        video.playsInline = true;
+        const playPromise = video.play();
+        if (playPromise !== undefined) {
+          playPromise.catch(() => {});
+        }
+      });
     });
 
     const nav = document.getElementById('mainNav');
-    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 50), { passive: true });
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 50);
+    }, { passive: true });
 
     const burger = document.getElementById('burgerBtn');
-    const menu   = document.getElementById('mobMenu');
+    const menu = document.getElementById('mobMenu');
     burger.addEventListener('click', () => {
       const open = menu.classList.toggle('open');
       burger.setAttribute('aria-expanded', open);
     });
-    menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-      menu.classList.remove('open');
-      burger.setAttribute('aria-expanded', 'false');
-    }));
+
+    menu.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        menu.classList.remove('open');
+        burger.setAttribute('aria-expanded', 'false');
+      });
+    });
 
     const reveals = document.querySelectorAll('.reveal');
     const obs = new IntersectionObserver(entries => {
-      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
-    }, { threshold: 0.07, rootMargin: '0px 0px -30px 0px' });
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.07, rootMargin: '0px 0px -36px 0px' });
+
     reveals.forEach(el => obs.observe(el));
   </script>
 </body>
